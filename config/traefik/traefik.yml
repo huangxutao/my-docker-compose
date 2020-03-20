@@ -1,0 +1,38 @@
+providers:
+  docker: {}
+  file:
+    directory: "/etc/traefik"
+    filename: "dynamic.yml"
+    watch: true
+
+log:
+  level: WARN
+  format: "json"
+  filePath: "/var/log/traefik.log"
+
+entryPoints:
+  web:
+    address: ":80"
+  websecure:
+    address: ":443"
+
+certificatesResolvers:
+  mytlschallenge:
+    acme:
+      email:  "hxtao1996@hxtao.xyz"
+      storage:  "/letsencrypt/acme.json"
+      tlsChallenge: {}
+
+api:
+  insecure: true
+  dashboard: true
+
+accessLog:
+  filePath: "/var/log/traefik-access.log"
+  format: json
+  filters:    
+    statusCodes:
+      - "200"
+      - "300-302"
+    retryAttempts: true
+    minDuration: "10ms"

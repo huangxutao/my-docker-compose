@@ -1,0 +1,46 @@
+http:
+  routers:
+    api-tls:
+      entryPoints:
+        - "websecure"
+      rule: "Host(`traefik.hxtao.xyz`)"
+      service: api@internal
+      tls:
+        certResolver: "tlschallenge"
+    api:
+      entryPoints:
+        - "web"
+      rule: "Host(`traefik.hxtao.xyz`)"
+      service: api@internal
+      middlewares:
+        - "auth@file"
+        - "redirect@file"
+
+  middlewares:
+    redirect:
+      redirectScheme:
+        scheme: https
+    auth:
+      basicAuth:
+        users:
+          - "user:$$apr1$$lsv5LR.i$$2PvRcnIjsEYJYAOLRDfx8/"  # echo $(htpasswd -nb user password) | sed -e s/\\$/\\$\\$/g
+    security-headers:
+      headers:
+        browserXssFilter: true
+        contentTypeNosniff: true
+        forceSTSHeader: true
+        frameDeny: true
+        sslRedirect: true
+        stsIncludeSubdomains: true
+        stsPreload: true
+        contentSecurityPolicy: "default-src 'self' 'unsafe-inline'"
+        customFrameOptionsValue: "SAMEORIGIN"
+        referrerPolicy: "same-origin"
+        featurePolicy: "vibrate 'self'"
+        stsSeconds: 315360000
+
+tls:
+  options:
+    default:
+      minVersion: VersionTLS12
+
