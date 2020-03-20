@@ -17,7 +17,7 @@ entryPoints:
     address: ":443"
 
 certificatesResolvers:
-  mytlschallenge:
+  tlschallenge:
     acme:
       email:  "hxtao1996@hxtao.xyz"
       storage:  "/letsencrypt/acme.json"
