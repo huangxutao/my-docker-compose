@@ -6,7 +6,7 @@ http:
       rule: "Host(`traefik.hxtao.xyz`)"
       service: api@internal
       tls:
-        certResolver: "tlschallenge"
+        certResolver: "mytlschallenge"
     api:
       entryPoints:
         - "web"
