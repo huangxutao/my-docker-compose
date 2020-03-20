@@ -9,7 +9,7 @@ http:
         certResolver: "mytlschallenge"
       middlewares:
         - "auth"
-        - "security-headers:"
+        - "security-headers"
     api:
       entryPoints:
         - "web"
