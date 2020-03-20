@@ -7,14 +7,16 @@ http:
       service: api@internal
       tls:
         certResolver: "mytlschallenge"
+      middlewares:
+        - "auth"
+        - "security-headers:"
     api:
       entryPoints:
         - "web"
       rule: "Host(`traefik.hxtao.xyz`)"
       service: api@internal
       middlewares:
-        - "auth@file"
-        - "redirect@file"
+        - "redirect"
 
   middlewares:
     redirect:
@@ -23,7 +25,7 @@ http:
     auth:
       basicAuth:
         users:
-          - "user:$$apr1$$lsv5LR.i$$2PvRcnIjsEYJYAOLRDfx8/"  # echo $(htpasswd -nb user password) | sed -e s/\\$/\\$\\$/g
+          - "traefik@hxtao:$apr1$QQgT/Het$N2oU.YVRomTdup8vHr.Mm1"  # echo $(htpasswd -nb user password) | sed -e s/\\$/\\$\\$/g
     security-headers:
       headers:
         browserXssFilter: true
