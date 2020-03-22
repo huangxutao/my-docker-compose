@@ -11,11 +11,11 @@ http:
           - "user:$$apr1$$09zdWgXw$$U3zdCZhsFFS6UY/KmNGh//"  # echo $(htpasswd -nb user password) | sed -e s/\\$/\\$\\$/g
     security-headers:
       headers:
-        # strict-sransport-security: "max-age=315360000; includeSubDomains; preload"
+        # strict-sransport-security: "max-age=31536000; includeSubDomains; preload"
         #    doc:
         #      - https://developer.mozilla.org/zh-CN/docs/Security/HTTP_Strict_Transport_Security
         sslRedirect: true
-        stsSeconds: 315360000
+        stsSeconds: 31536000
         stsIncludeSubdomains: true
         stsPreload: true
         forceSTSHeader: true # Set forceSTSHeader to true, to add the STS header even when the connection is HTTP. doc: https://docs.traefik.io/middlewares/headers/#forcestsheader
@@ -46,7 +46,7 @@ http:
         # referrer-policy: same-origin
         #   doc:
         #     - https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Referrer-Policy
-        referrerPolicy: "same-origin"
+        referrerPolicy: "same-origin"  # 只对同源地址发送引用地址信息
 
         # feature-policy: ibrate 'self'
         #   doc:
