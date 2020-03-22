@@ -8,7 +8,7 @@
 ./setup.sh
 ```
 
-## restart
+## reload
 
 ```bash
 ./reload.sh
