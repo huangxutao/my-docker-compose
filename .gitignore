@@ -1,0 +1,3 @@
+log/
+config/letsencrypt/acme.json
+.config.yml

@@ -1,23 +1,6 @@
 http:
-  routers:
-    api-tls:
-      entryPoints:
-        - "websecure"
-      rule: "Host(`traefik.hxtao.xyz`)"
-      service: api@internal
-      tls:
-        certResolver: "mytlschallenge"
-      middlewares:
-        - "auth"
-        - "security-headers"
-    api:
-      entryPoints:
-        - "web"
-      rule: "Host(`traefik.hxtao.xyz`)"
-      service: api@internal
-      middlewares:
-        - "redirect"
-
+  # routers:
+    
   middlewares:
     redirect:
       redirectScheme:
@@ -25,7 +8,7 @@ http:
     auth:
       basicAuth:
         users:
-          - "traefik@hxtao:$apr1$QQgT/Het$N2oU.YVRomTdup8vHr.Mm1"  # echo $(htpasswd -nb user password) | sed -e s/\\$/\\$\\$/g
+          - "user:$$apr1$$09zdWgXw$$U3zdCZhsFFS6UY/KmNGh//"  # echo $(htpasswd -nb user password) | sed -e s/\\$/\\$\\$/g
     security-headers:
       headers:
         browserXssFilter: true
