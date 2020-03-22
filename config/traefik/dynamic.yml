@@ -11,18 +11,48 @@ http:
           - "user:$$apr1$$09zdWgXw$$U3zdCZhsFFS6UY/KmNGh//"  # echo $(htpasswd -nb user password) | sed -e s/\\$/\\$\\$/g
     security-headers:
       headers:
-        browserXssFilter: true
-        contentTypeNosniff: true
-        forceSTSHeader: true
-        frameDeny: true
+        # strict-sransport-security: "max-age=315360000; includeSubDomains; preload"
+        #    doc:
+        #      - https://developer.mozilla.org/zh-CN/docs/Security/HTTP_Strict_Transport_Security
         sslRedirect: true
+        stsSeconds: 315360000
         stsIncludeSubdomains: true
         stsPreload: true
-        contentSecurityPolicy: "default-src 'self' 'unsafe-inline'"
-        customFrameOptionsValue: "SAMEORIGIN"
+        forceSTSHeader: true # Set forceSTSHeader to true, to add the STS header even when the connection is HTTP. doc: https://docs.traefik.io/middlewares/headers/#forcestsheader
+
+
+        # content-security-policy
+        #   doc:
+        #     - https://developer.mozilla.org/zh-CN/docs/Web/HTTP/CSP
+        #     - https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Content-Security-Policy
+        contentSecurityPolicy: "default-src 'self' *.hxtao.xyz *.h2-o.xyz *.alicdn.com *.googletagmanager.com *.google-analytics.com *.googleapis.com data: blob: 'unsafe-inline'"
+
+        # x-content-type-options: nosniff
+        #   doc:
+        #     - https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/X-Content-Type-Options
+        contentTypeNosniff: true
+
+        # X-XSS-Protection: 1; mode=block
+        #   doc:
+        #     - https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/X-XSS-Protection
+        browserXssFilter: true
+
+        # x-frame-options: sameorigin
+        #   doc:
+        #     - https://developer.mozilla.org/zh-CN/docs/Web/HTTP/X-Frame-Options
+        frameDeny: true
+        customFrameOptionsValue: "sameorigin" # The customFrameOptionsValue allows the X-Frame-Options header value to be set with a custom value. This overrides the FrameDeny option. doc: https://docs.traefik.io/middlewares/headers/#framedeny
+
+        # referrer-policy: same-origin
+        #   doc:
+        #     - https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Referrer-Policy
         referrerPolicy: "same-origin"
-        featurePolicy: "vibrate 'self'"
-        stsSeconds: 315360000
+
+        # feature-policy: ibrate 'self'
+        #   doc:
+        #     - https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Feature-Policy  处于实验中
+        #     - https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Feature-Policy/vibrate 是否可以调用振动 API
+        featurePolicy: "vibrate 'self'"  # 只允许自己（当前页面）的调用振动 API
 
 tls:
   options:

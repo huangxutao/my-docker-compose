@@ -1,6 +1,12 @@
 version: '3'
 
 services:
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    restart: always
+    volumes:
+      - ./volumes/mongo:/data/db
   traefik:
     image: traefik:v2.1
     container_name: traefik
@@ -38,3 +44,14 @@ services:
       - "traefik.http.routers.note-manage.rule=Host(`note-manage.hxtao.xyz`)"
       - "traefik.http.routers.note-manage.middlewares=security-headers@file"
       - "traefik.http.routers.note-manage.tls.certResolver=mytlschallenge"
+  note-api:
+    image: note-api:1.0.0
+    container_name: note-api
+    depends_on:
+      - mongo
+    ports:
+      - "4533:4533"
+    labels:
+      - "traefik.http.routers.note-api.rule=Host(`note-api.hxtao.xyz`)"
+      - "traefik.http.routers.note-api.middlewares=security-headers@file"
+      - "traefik.http.routers.note-api.tls.certResolver=mytlschallenge"
