@@ -11,5 +11,5 @@
 ## restart
 
 ```bash
-docker-compose up -d
+./reload.sh
 ```
