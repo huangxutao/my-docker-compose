@@ -47,10 +47,12 @@ services:
   note-api:
     image: note-api:1.0.0
     container_name: note-api
+    volumes:
+      - ./config/note-api/config.yml /app/config.yml
+      - ./log/note-api /root/.pm2
+      - ./volumes/note-api /app
     depends_on:
       - mongo
-    ports:
-      - "4533:4533"
     labels:
       - "traefik.http.routers.note-api.rule=Host(`note-api.hxtao.xyz`)"
       - "traefik.http.routers.note-api.middlewares=security-headers@file"
