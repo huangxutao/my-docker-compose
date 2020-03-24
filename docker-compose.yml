@@ -12,7 +12,7 @@ services:
     container_name: traefik
     labels:
       - "traefik.http.routers.traefik.service=api@internal"
-      - "traefik.http.routers.traefik.rule=Host(`traefik.hxtao.xyz`)"
+      - "traefik.http.routers.traefik.rule=Host(`traefik.h2-o.xyz`)"
       - "traefik.http.routers.traefik.tls.certResolver=mytlschallenge"
       - "traefik.http.routers.http_catchall.rule=HostRegexp(`{any:.+}`)"
       - "traefik.http.routers.http_catchall.entrypoints=web"
@@ -28,20 +28,20 @@ services:
       - ./config/letsencrypt:/letsencrypt
       - ./config/traefik:/etc/traefik
       - ./log/traefik:/var/log
-  # note.hxtao.xyz
+  # note.h2-o.xyz
   note:
     image: note_nginx:1.0.0
     container_name: note
     labels:
-      - "traefik.http.routers.note.rule=Host(`note.hxtao.xyz`)"
+      - "traefik.http.routers.note.rule=Host(`note.h2-o.xyz`)"
       - "traefik.http.routers.note.middlewares=security-headers@file"
       - "traefik.http.routers.note.tls.certResolver=mytlschallenge"
-  # note-manage.hxtao.xyz
+  # note-manage.h2-o.xyz
   note-manage:
     image: note-manage_nginx:1.0.0
     container_name: note-manage
     labels:
-      - "traefik.http.routers.note-manage.rule=Host(`note-manage.hxtao.xyz`)"
+      - "traefik.http.routers.note-manage.rule=Host(`note-manage.h2-o.xyz`)"
       - "traefik.http.routers.note-manage.middlewares=security-headers@file"
       - "traefik.http.routers.note-manage.tls.certResolver=mytlschallenge"
   note-api:
@@ -54,6 +54,6 @@ services:
     depends_on:
       - mongo
     labels:
-      - "traefik.http.routers.note-api.rule=Host(`note-api.hxtao.xyz`)"
+      - "traefik.http.routers.note-api.rule=Host(`note-api.h2-o.xyz`)"
       - "traefik.http.routers.note-api.middlewares=security-headers@file"
       - "traefik.http.routers.note-api.tls.certResolver=mytlschallenge"
