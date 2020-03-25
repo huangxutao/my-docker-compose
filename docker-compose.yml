@@ -2,7 +2,7 @@ version: '3'
 
 services:
   mongo:
-    image: mongo:latest
+    image: mongo:3.6
     container_name: mongo
     restart: always
     volumes:
@@ -14,6 +14,7 @@ services:
       - "traefik.http.routers.traefik.service=api@internal"
       - "traefik.http.routers.traefik.rule=Host(`traefik.h2-o.xyz`)"
       - "traefik.http.routers.traefik.tls.certResolver=mytlschallenge"
+      - "traefik.http.routers.traefik.middlewares=auth@file"
       - "traefik.http.routers.http_catchall.rule=HostRegexp(`{any:.+}`)"
       - "traefik.http.routers.http_catchall.entrypoints=web"
       - "traefik.http.routers.http_catchall.middlewares=https_redirect"
