@@ -44,13 +44,15 @@ services:
       - "traefik.http.routers.note-manage.rule=Host(`note-manage.h2-o.xyz`)"
       - "traefik.http.routers.note-manage.middlewares=security-headers@file"
       - "traefik.http.routers.note-manage.tls.certResolver=mytlschallenge"
+  # note-api.h2-o.xyz
   note-api:
-    image: note-api:1.0.0
+    image: hxtao1996/note-api:0.0.1
     container_name: note-api
     volumes:
-      - ./config/note-api/config.yml /app/config.yml
-      - ./log/note-api /root/.pm2
-      - ./volumes/note-api /app
+      - ./config/note-api/config.yml:/app/config.yml
+      - ./log/note-api:/root/.pm2
+      - ./volumes/note-api/public:/app/public
+      - ./volumes/note-api/.backup:/app/.backup
     depends_on:
       - mongo
     labels:
