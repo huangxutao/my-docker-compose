@@ -25,7 +25,7 @@ http:
         #   doc:
         #     - https://developer.mozilla.org/zh-CN/docs/Web/HTTP/CSP  内容安全策略 
         #     - https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Content-Security-Policy
-        contentSecurityPolicy: "default-src 'self' *.hxtao.xyz *.h2-o.xyz *.alicdn.com *.googletagmanager.com *.google-analytics.com *.googleapis.com *.gstatic.com music.163.com *.disqus.com *.disquscdn.com busuanzi.ibruce.info www.youtube.com player.bilibili.com data: blob: 'unsafe-inline'"
+        contentSecurityPolicy: "default-src 'self' *.hxtao.xyz *.h2-o.xyz *.alicdn.com *.googletagmanager.com *.google-analytics.com *.googleapis.com *.gstatic.com music.163.com *.disqus.com *.disquscdn.com busuanzi.ibruce.info www.youtube.com player.bilibili.com data: blob:"
 
         # x-content-type-options: nosniff
         #   doc:

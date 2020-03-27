@@ -31,7 +31,7 @@ services:
       - ./log/traefik:/var/log
   # note.hxtao.xyz
   note:
-    image: hxtao1996/note.hxtao:0.0.1
+    image: hxtao1996/note.hxtao:0.0.2
     container_name: note
     labels:
       - "traefik.http.routers.note.rule=Host(`note.hxtao.xyz`)"
