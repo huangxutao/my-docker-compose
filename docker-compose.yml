@@ -31,7 +31,7 @@ services:
       - ./log/traefik:/var/log
   # note.hxtao.xyz
   note:
-    image: hxtao1996/note.hxtao:0.0.2
+    image: hxtao1996/note.hxtao:0.0.3
     container_name: note
     labels:
       - "traefik.http.routers.note.rule=Host(`note.hxtao.xyz`)"
@@ -39,7 +39,7 @@ services:
       - "traefik.http.routers.note.tls.certResolver=mytlschallenge"
   # note-manage.hxtao.xyz
   note-manage:
-    image: hxtao1996/note-manage.hxtao:0.0.1
+    image: hxtao1996/note-manage.hxtao:0.0.3
     container_name: note-manage
     labels:
       - "traefik.http.routers.note-manage.rule=Host(`note-manage.hxtao.xyz`)"
