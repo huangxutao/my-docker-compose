@@ -47,7 +47,7 @@ services:
       - "traefik.http.routers.note-manage.tls.certResolver=mytlschallenge"
   # note-api.hxtao.xyz
   note-api:
-    image: hxtao1996/note-api:0.0.2
+    image: hxtao1996/note-api:0.0.1
     container_name: note-api
     volumes:
       - ./config/note-api/config.yml:/app/config.yml
