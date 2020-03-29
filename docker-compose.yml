@@ -29,6 +29,13 @@ services:
       - ./config/letsencrypt:/letsencrypt
       - ./config/traefik:/etc/traefik
       - ./log/traefik:/var/log
+  main:
+    image: hxtao1996/hxtao.xyz:0.0.1
+    container_name: main
+    labels:
+      - "traefik.http.routers.note.rule=Host(`hxtao.xyz`)"
+      - "traefik.http.routers.note.middlewares=security-headers@file"
+      - "traefik.http.routers.note.tls.certResolver=mytlschallenge"
   # note.hxtao.xyz
   note:
     image: hxtao1996/note.hxtao:0.0.3
