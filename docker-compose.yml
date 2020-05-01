@@ -39,7 +39,7 @@ services:
       - "traefik.http.routers.main.tls.certResolver=mytlschallenge"
   # note.hxtao.xyz
   note:
-    image: hxtao1996/note.hxtao:0.0.6
+    image: hxtao1996/note.hxtao:0.0.7
     container_name: note
     labels:
       - "traefik.http.routers.note.rule=Host(`note.hxtao.xyz`)"
