@@ -31,7 +31,7 @@ services:
       - ./log/traefik:/var/log
   # hxtao.xyz
   main:
-    image: hxtao1996/hxtao.xyz:0.0.5
+    image: hxtao1996/hxtao.xyz:0.0.6
     container_name: main
     labels:
       - "traefik.http.routers.main.rule=Host(`hxtao.xyz`)"
