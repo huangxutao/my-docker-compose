@@ -25,7 +25,7 @@ http:
         #   doc:
         #     - https://developer.mozilla.org/zh-CN/docs/Web/HTTP/CSP  内容安全策略 
         #     - https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Content-Security-Policy
-        contentSecurityPolicy: "default-src 'self' *.hxtao.xyz *.googletagmanager.com *.googleapis.com *.gstatic.com at.alicdn.com music.163.com www.youtube.com player.bilibili.com *.disqus.com disqus.com c.disquscdn.com cdn.viglink.com data: blob: ; style-src 'self' 'unsafe-inline' *.hxtao.xyz *.googleapis.com at.alicdn.com music.163.com www.youtube.com player.bilibili.com *.disqus.com disqus.com c.disquscdn.com cdn.viglink.com data: blob: ;"
+        contentSecurityPolicy: "default-src 'self' *.hxtao.xyz *.h2-o.xyz *.googletagmanager.com *.googleapis.com *.gstatic.com at.alicdn.com music.163.com www.youtube.com player.bilibili.com *.disqus.com disqus.com c.disquscdn.com cdn.viglink.com data: blob: ; style-src 'self' 'unsafe-inline' *.hxtao.xyz *.h2-o.xyz *.googleapis.com at.alicdn.com music.163.com www.youtube.com player.bilibili.com *.disqus.com disqus.com c.disquscdn.com cdn.viglink.com data: blob: ;"
 
         # x-content-type-options: nosniff
         #   doc:
